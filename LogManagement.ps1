@@ -92,9 +92,9 @@ param (
 
 # Convert string to boolean
 [bool]$includeSubfolders  = $includeSubfolders -eq "True"
-
-if ($subfolders) {
-    $subFolderPaths = $subFolders -split ',' | ForEach-Object { $_.Trim() }
+$destinationFolder += "\" + $env:COMPUTERNAME
+if ($subFolders) {
+    $subFolderPaths = $subFolders -split '\|' | ForEach-Object { $_.Trim() }
     foreach ($subFolder in $subFolderPaths) {
 		$fullSourceFolderPath = Join-Path -Path $sourceFolder -ChildPath "$subFolder"
 		$fullDestinationFolderPath = Join-Path -Path $destinationFolder -ChildPath "$subFolder"
